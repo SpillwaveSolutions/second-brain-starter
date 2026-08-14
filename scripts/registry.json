@@ -1,0 +1,511 @@
+{
+  "version": "0.1.0",
+  "catalogs": [
+    "account-plans",
+    "action-items",
+    "agents",
+    "articles",
+    "blockers",
+    "campaigns",
+    "clients",
+    "commitments",
+    "companies",
+    "concepts",
+    "consulting-leads",
+    "contacts",
+    "criteria",
+    "decisions",
+    "deliverables",
+    "digests",
+    "discovery-calls",
+    "drafts",
+    "engagements",
+    "events",
+    "follow-up-candidates",
+    "icps",
+    "job-leads",
+    "news-items",
+    "offers",
+    "opportunities",
+    "packs",
+    "positioning",
+    "priorities",
+    "proof-points",
+    "roles",
+    "sales-leads",
+    "scopes",
+    "series",
+    "sources",
+    "stakeholders",
+    "subscribers",
+    "topics"
+  ],
+  "types": {
+    "Concept": {
+      "plugin": "second-brain-core",
+      "folder": "concepts",
+      "rels": [
+        "related_to",
+        "depends_on",
+        "owned_by",
+        "originates_from",
+        "supersedes",
+        "documents"
+      ]
+    },
+    "ContextPack": {
+      "plugin": "second-brain-core",
+      "folder": "packs",
+      "rels": [
+        "related_to",
+        "originates_from",
+        "documents"
+      ]
+    },
+    "TypedEdge": {
+      "plugin": "second-brain-core",
+      "folder": "packs",
+      "rels": [
+        "related_to"
+      ]
+    },
+    "AgentIdentity": {
+      "plugin": "second-brain-core",
+      "folder": "agents",
+      "rels": [
+        "owned_by",
+        "related_to"
+      ]
+    },
+    "WriteEvent": {
+      "plugin": "second-brain-core",
+      "folder": "events",
+      "rels": [
+        "originates_from",
+        "documents"
+      ]
+    },
+    "Priority": {
+      "plugin": "executive-coordination",
+      "folder": "priorities",
+      "rels": [
+        "blocks",
+        "depends_on",
+        "escalates_to",
+        "assigned_to",
+        "decides",
+        "originates_from",
+        "related_to",
+        "supersedes"
+      ]
+    },
+    "Decision": {
+      "plugin": "executive-coordination",
+      "folder": "decisions",
+      "rels": [
+        "decides",
+        "originates_from",
+        "related_to",
+        "supersedes",
+        "assigned_to"
+      ]
+    },
+    "Blocker": {
+      "plugin": "executive-coordination",
+      "folder": "blockers",
+      "rels": [
+        "blocks",
+        "escalates_to",
+        "assigned_to",
+        "related_to",
+        "originates_from"
+      ]
+    },
+    "ActionItem": {
+      "plugin": "executive-coordination",
+      "folder": "action-items",
+      "rels": [
+        "assigned_to",
+        "depends_on",
+        "originates_from",
+        "related_to"
+      ]
+    },
+    "DailyDigest": {
+      "plugin": "executive-coordination",
+      "folder": "digests",
+      "rels": [
+        "originates_from",
+        "related_to",
+        "documents"
+      ]
+    },
+    "Client": {
+      "plugin": "account-management",
+      "folder": "clients",
+      "rels": [
+        "owned_by",
+        "has",
+        "related_to"
+      ]
+    },
+    "Contact": {
+      "plugin": "account-management",
+      "folder": "contacts",
+      "rels": [
+        "belongs_to",
+        "reports_to",
+        "related_to"
+      ]
+    },
+    "Stakeholder": {
+      "plugin": "account-management",
+      "folder": "stakeholders",
+      "rels": [
+        "belongs_to",
+        "reports_to",
+        "related_to"
+      ]
+    },
+    "AccountPlan": {
+      "plugin": "account-management",
+      "folder": "account-plans",
+      "rels": [
+        "belongs_to",
+        "owned_by",
+        "has",
+        "related_to"
+      ]
+    },
+    "Deliverable": {
+      "plugin": "account-management",
+      "folder": "deliverables",
+      "rels": [
+        "belongs_to",
+        "committed_to",
+        "due_on",
+        "blocks",
+        "related_to"
+      ]
+    },
+    "Commitment": {
+      "plugin": "account-management",
+      "folder": "commitments",
+      "rels": [
+        "belongs_to",
+        "committed_to",
+        "related_to"
+      ]
+    },
+    "SalesLead": {
+      "plugin": "sales-pipeline",
+      "folder": "sales-leads",
+      "rels": [
+        "belongs_to",
+        "owned_by",
+        "originates_from",
+        "advances_to",
+        "related_to"
+      ]
+    },
+    "Opportunity": {
+      "plugin": "sales-pipeline",
+      "folder": "opportunities",
+      "rels": [
+        "belongs_to",
+        "owned_by",
+        "advances_to",
+        "blocked_by",
+        "proposed_as",
+        "related_to"
+      ]
+    },
+    "Stage": {
+      "plugin": "sales-pipeline",
+      "folder": "opportunities",
+      "rels": [
+        "related_to"
+      ]
+    },
+    "NextAction": {
+      "plugin": "sales-pipeline",
+      "folder": "opportunities",
+      "rels": [
+        "belongs_to",
+        "assigned_to",
+        "related_to"
+      ]
+    },
+    "JobLead": {
+      "plugin": "executive-job-search",
+      "folder": "job-leads",
+      "rels": [
+        "owned_by",
+        "at_company",
+        "matches",
+        "referred_by",
+        "in_stage",
+        "originates_from",
+        "related_to",
+        "resulted_in"
+      ]
+    },
+    "Role": {
+      "plugin": "executive-job-search",
+      "folder": "roles",
+      "rels": [
+        "related_to",
+        "matches"
+      ]
+    },
+    "CompanyTarget": {
+      "plugin": "executive-job-search",
+      "folder": "companies",
+      "rels": [
+        "related_to"
+      ]
+    },
+    "TargetCriteria": {
+      "plugin": "executive-job-search",
+      "folder": "criteria",
+      "rels": [
+        "related_to"
+      ]
+    },
+    "ConsultingLead": {
+      "plugin": "consulting-leads",
+      "folder": "consulting-leads",
+      "rels": [
+        "owned_by",
+        "typed_as",
+        "qualified_by",
+        "discovered_in",
+        "matches",
+        "originates_from",
+        "related_to",
+        "proposed_as"
+      ]
+    },
+    "EngagementType": {
+      "plugin": "consulting-leads",
+      "folder": "engagements",
+      "rels": [
+        "related_to"
+      ]
+    },
+    "DiscoveryCall": {
+      "plugin": "consulting-leads",
+      "folder": "discovery-calls",
+      "rels": [
+        "originates_from",
+        "related_to",
+        "discovered_in"
+      ]
+    },
+    "QualificationNote": {
+      "plugin": "consulting-leads",
+      "folder": "consulting-leads",
+      "rels": [
+        "qualified_by",
+        "related_to"
+      ]
+    },
+    "Scope": {
+      "plugin": "consulting-leads",
+      "folder": "scopes",
+      "rels": [
+        "related_to",
+        "matches"
+      ]
+    },
+    "Article": {
+      "plugin": "content-media",
+      "folder": "articles",
+      "rels": [
+        "authored_by",
+        "belongs_to",
+        "promotes",
+        "engaged_with",
+        "distributed_on",
+        "measured_by",
+        "originates_from",
+        "related_to",
+        "supersedes"
+      ]
+    },
+    "Draft": {
+      "plugin": "content-media",
+      "folder": "drafts",
+      "rels": [
+        "authored_by",
+        "belongs_to",
+        "originates_from",
+        "related_to",
+        "supersedes"
+      ]
+    },
+    "Series": {
+      "plugin": "content-media",
+      "folder": "series",
+      "rels": [
+        "related_to"
+      ]
+    },
+    "Subscriber": {
+      "plugin": "content-media",
+      "folder": "subscribers",
+      "rels": [
+        "engaged_with",
+        "related_to"
+      ]
+    },
+    "Headline": {
+      "plugin": "content-media",
+      "folder": "drafts",
+      "rels": [
+        "related_to",
+        "originates_from"
+      ]
+    },
+    "NewsItem": {
+      "plugin": "news-digest",
+      "folder": "news-items",
+      "rels": [
+        "sourced_from",
+        "included_in",
+        "about_topic",
+        "signals",
+        "mentions",
+        "follow_up_as",
+        "related_to",
+        "originates_from"
+      ]
+    },
+    "Source": {
+      "plugin": "news-digest",
+      "folder": "sources",
+      "rels": [
+        "related_to"
+      ]
+    },
+    "Digest": {
+      "plugin": "news-digest",
+      "folder": "digests",
+      "rels": [
+        "related_to",
+        "included_in"
+      ]
+    },
+    "Topic": {
+      "plugin": "news-digest",
+      "folder": "topics",
+      "rels": [
+        "related_to"
+      ]
+    },
+    "FollowUpCandidate": {
+      "plugin": "news-digest",
+      "folder": "follow-up-candidates",
+      "rels": [
+        "originates_from",
+        "follow_up_as",
+        "related_to"
+      ]
+    },
+    "Offer": {
+      "plugin": "gtm-positioning",
+      "folder": "offers",
+      "rels": [
+        "owned_by",
+        "promoted_by",
+        "aimed_at",
+        "supported_by",
+        "competes_with",
+        "tested_by",
+        "related_to",
+        "originates_from"
+      ]
+    },
+    "PositioningStatement": {
+      "plugin": "gtm-positioning",
+      "folder": "positioning",
+      "rels": [
+        "owned_by",
+        "related_to",
+        "aimed_at",
+        "supported_by"
+      ]
+    },
+    "MessagingPillar": {
+      "plugin": "gtm-positioning",
+      "folder": "campaigns",
+      "rels": [
+        "related_to",
+        "supported_by"
+      ]
+    },
+    "IdealCustomerProfile": {
+      "plugin": "gtm-positioning",
+      "folder": "icps",
+      "rels": [
+        "related_to",
+        "aimed_at"
+      ]
+    },
+    "ProofPoint": {
+      "plugin": "gtm-positioning",
+      "folder": "proof-points",
+      "rels": [
+        "supported_by",
+        "related_to"
+      ]
+    }
+  },
+  "plugins": [
+    {
+      "name": "second-brain-core",
+      "identity": "Grok Bot: Second Brain Core",
+      "repo": "https://github.com/SpillwaveSolutions/second-brain-core"
+    },
+    {
+      "name": "executive-coordination",
+      "identity": "Grok Bot: Executive Assistant",
+      "repo": "https://github.com/SpillwaveSolutions/executive-coordination"
+    },
+    {
+      "name": "account-management",
+      "identity": "Grok Bot: Account Management",
+      "repo": "https://github.com/SpillwaveSolutions/account-management"
+    },
+    {
+      "name": "sales-pipeline",
+      "identity": "Grok Bot: Sales",
+      "repo": "https://github.com/SpillwaveSolutions/sales-pipeline"
+    },
+    {
+      "name": "executive-job-search",
+      "identity": "Grok Bot: Executive Job Search",
+      "repo": "https://github.com/SpillwaveSolutions/executive-job-search"
+    },
+    {
+      "name": "consulting-leads",
+      "identity": "Grok Bot: Consulting Leads",
+      "repo": "https://github.com/SpillwaveSolutions/consulting-leads"
+    },
+    {
+      "name": "content-media",
+      "identity": "Grok Bot: Articles",
+      "repo": "https://github.com/SpillwaveSolutions/content-media"
+    },
+    {
+      "name": "news-digest",
+      "identity": "Grok Bot: News Digest",
+      "repo": "https://github.com/SpillwaveSolutions/news-digest"
+    },
+    {
+      "name": "gtm-positioning",
+      "identity": "Grok Bot: GTM",
+      "repo": "https://github.com/SpillwaveSolutions/gtm-positioning"
+    }
+  ]
+}

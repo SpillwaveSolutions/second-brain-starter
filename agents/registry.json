@@ -1,0 +1,332 @@
+{
+  "version": "0.1.0",
+  "agents": [
+    {
+      "slug": "grok-bot-executive-assistant",
+      "identity": "Grok Bot: Executive Assistant",
+      "job": "Chief of staff. Route work, keep priorities honest, write digests.",
+      "plugin": "executive-coordination",
+      "writes": [
+        "Priority",
+        "Decision",
+        "Blocker",
+        "ActionItem",
+        "DailyDigest",
+        "WeeklyDigest",
+        "Handoff",
+        "Escalation",
+        "AgendaItem",
+        "StatusUpdate",
+        "Risk",
+        "Dependency",
+        "MeetingNote",
+        "RoutingRule",
+        "CapacityNote"
+      ],
+      "reads": [
+        "Client",
+        "Opportunity",
+        "Article",
+        "ConsultingLead",
+        "JobLead",
+        "Offer"
+      ],
+      "pack_roots": [
+        "Priority",
+        "Decision",
+        "Blocker"
+      ],
+      "default_root": "/priorities/ship-second-brain-plugins.md"
+    },
+    {
+      "slug": "grok-bot-sales",
+      "identity": "Grok Bot: Sales",
+      "job": "Own the commercial pipeline. Next actions have dates.",
+      "plugin": "sales-pipeline",
+      "writes": [
+        "SalesLead",
+        "Opportunity",
+        "Deal",
+        "Stage",
+        "NextAction",
+        "Objection",
+        "Competitor",
+        "Champion",
+        "EconomicBuyer",
+        "TechnicalBuyer",
+        "Proposal",
+        "Quote",
+        "Contract",
+        "NegotiationNote",
+        "WinLossReason",
+        "SalesCampaign",
+        "OutreachSequence",
+        "Touchpoint",
+        "ForecastEntry",
+        "PipelineSnapshot",
+        "ReferralSource"
+      ],
+      "reads": [
+        "Client",
+        "ConsultingLead",
+        "Article",
+        "Offer",
+        "PositioningStatement"
+      ],
+      "pack_roots": [
+        "Opportunity",
+        "SalesLead"
+      ],
+      "default_root": "/opportunities/northstar-harness-sprint.md"
+    },
+    {
+      "slug": "grok-bot-account-management",
+      "identity": "Grok Bot: Account Management",
+      "job": "Keep named accounts healthy. Commitments, deliverables, renewals.",
+      "plugin": "account-management",
+      "writes": [
+        "Client",
+        "Contact",
+        "Stakeholder",
+        "RelationshipHealth",
+        "AccountPlan",
+        "StatementOfWork",
+        "Deliverable",
+        "Milestone",
+        "Issue",
+        "Risk",
+        "Opportunity",
+        "Meeting",
+        "CallNote",
+        "EmailThread",
+        "Commitment",
+        "InvoiceStatus",
+        "ExpansionOpportunity",
+        "SatisfactionSignal",
+        "Escalation",
+        "RenewalDate",
+        "SuccessMetric"
+      ],
+      "reads": [
+        "SalesLead",
+        "ConsultingLead",
+        "Decision",
+        "Article"
+      ],
+      "pack_roots": [
+        "Client",
+        "AccountPlan"
+      ],
+      "default_root": "/clients/northstar.md"
+    },
+    {
+      "slug": "grok-bot-executive-job-search",
+      "identity": "Grok Bot: Executive Job Search",
+      "job": "Track roles, companies, interviews, offers. Separate from client work.",
+      "plugin": "executive-job-search",
+      "writes": [
+        "JobLead",
+        "Role",
+        "CompanyTarget",
+        "CompensationBand",
+        "LocationPreference",
+        "RecruiterContact",
+        "HiringManager",
+        "InterviewStage",
+        "InterviewNote",
+        "Offer",
+        "CounterOffer",
+        "RejectionReason",
+        "Application",
+        "Referral",
+        "TargetCriteria",
+        "MarketSignal",
+        "CompanyResearch",
+        "CultureNote",
+        "DecisionRationale"
+      ],
+      "reads": [
+        "Priority",
+        "Decision"
+      ],
+      "pack_roots": [
+        "JobLead",
+        "CompanyTarget"
+      ],
+      "default_root": "/job-leads/lumenfield-head-of-ai-platform.md"
+    },
+    {
+      "slug": "grok-bot-consulting-leads",
+      "identity": "Grok Bot: Consulting Leads",
+      "job": "Qualify inbound consulting interest against Spillwave offers.",
+      "plugin": "consulting-leads",
+      "writes": [
+        "ConsultingLead",
+        "EngagementType",
+        "Scope",
+        "BudgetRange",
+        "Timeline",
+        "DecisionMaker",
+        "QualificationNote",
+        "Proposal",
+        "StatementOfWork",
+        "DiscoveryCall",
+        "Objection",
+        "Competitor",
+        "WinLossReason",
+        "ReferralSource",
+        "CapabilityMatch"
+      ],
+      "reads": [
+        "Article",
+        "Offer",
+        "PositioningStatement",
+        "Client"
+      ],
+      "pack_roots": [
+        "ConsultingLead",
+        "DiscoveryCall"
+      ],
+      "default_root": "/consulting-leads/northstar-platform-team.md"
+    },
+    {
+      "slug": "grok-bot-articles",
+      "identity": "Grok Bot: Articles",
+      "job": "Turn ideas and news follow-ups into drafts, then published pieces.",
+      "plugin": "content-media",
+      "writes": [
+        "Article",
+        "Draft",
+        "Series",
+        "EditorialCalendar",
+        "Headline",
+        "Hook",
+        "Outline",
+        "KeyPoint",
+        "CallToAction",
+        "Subscriber",
+        "Segment",
+        "AudienceInsight",
+        "PerformanceMetric",
+        "DistributionChannel",
+        "PromotionPlan",
+        "RepurposingNote",
+        "StyleGuide",
+        "PositioningStatement",
+        "ContentExperiment",
+        "Feedback"
+      ],
+      "reads": [
+        "FollowUpCandidate",
+        "NewsItem",
+        "Offer",
+        "PositioningStatement",
+        "MessagingPillar",
+        "ProofPoint"
+      ],
+      "pack_roots": [
+        "Article",
+        "Draft",
+        "Series"
+      ],
+      "default_root": "/articles/the-work-is-happening.md"
+    },
+    {
+      "slug": "grok-bot-news-digest",
+      "identity": "Grok Bot: News Digest",
+      "alias": "Grok Bot: AI News Digest",
+      "job": "Morning and afternoon digest. Flag follow-up candidates for Articles.",
+      "plugin": "news-digest",
+      "writes": [
+        "NewsItem",
+        "Source",
+        "Digest",
+        "SignalStrength",
+        "Topic",
+        "Trend",
+        "CompanyMention",
+        "ProductLaunch",
+        "ResearchPaper",
+        "OpinionPiece",
+        "FollowUpCandidate",
+        "SourceCredibility",
+        "TimestampedEvent"
+      ],
+      "reads": [
+        "Article",
+        "Offer",
+        "PositioningStatement"
+      ],
+      "pack_roots": [
+        "Digest",
+        "FollowUpCandidate",
+        "NewsItem"
+      ],
+      "default_root": "/digests/morning-2026-08-14.md"
+    },
+    {
+      "slug": "grok-bot-gtm",
+      "identity": "Grok Bot: GTM",
+      "job": "Own the offer, the words, and the proof. Articles promote. Sales uses.",
+      "plugin": "gtm-positioning",
+      "writes": [
+        "Offer",
+        "PositioningStatement",
+        "MessagingPillar",
+        "ValueProposition",
+        "IdealCustomerProfile",
+        "CompetitiveAlternative",
+        "Objection",
+        "CaseStudy",
+        "ProofPoint",
+        "LandingPage",
+        "SiteStatus",
+        "TrafficSource",
+        "ConversionEvent",
+        "Campaign",
+        "Experiment",
+        "PricingNote",
+        "Packaging",
+        "Testimonial",
+        "BattleCard"
+      ],
+      "reads": [
+        "Article",
+        "ConsultingLead",
+        "Client",
+        "NewsItem"
+      ],
+      "pack_roots": [
+        "Offer",
+        "PositioningStatement"
+      ],
+      "default_root": "/positioning/disclosure-not-more-context.md"
+    },
+    {
+      "slug": "laptop-articles",
+      "identity": "Laptop: Articles",
+      "job": "Local long-form job on the laptop. Same nouns as Grok Bot: Articles. Same tree.",
+      "plugin": "content-media",
+      "writes": [
+        "Article",
+        "Draft",
+        "Series",
+        "Outline",
+        "Headline",
+        "Hook",
+        "KeyPoint",
+        "PromotionPlan"
+      ],
+      "reads": [
+        "FollowUpCandidate",
+        "Offer",
+        "PositioningStatement"
+      ],
+      "pack_roots": [
+        "Draft",
+        "Article"
+      ],
+      "default_root": "/drafts/the-work-is-happening.md"
+    }
+  ]
+}
