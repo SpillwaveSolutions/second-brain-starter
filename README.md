@@ -19,7 +19,7 @@ python3 tests/test_brain.py
 
 Safe to fork. Every name is fictional (Northstar the account, Lumenfield the employer, Avery Quinn and Jordan Hale the people).
 
-The private working copy lives at `SpillwaveSolutions/grok-bot-knowledge`.
+The private working copy lives at `SpillwaveSolutions/rick-grok-bot-knowledge`.
 
 
 ## Quick start
