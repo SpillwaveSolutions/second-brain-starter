@@ -16,10 +16,13 @@ python3 scripts/brain.py doctor
 python3 tests/test_brain.py
 ```
 
-
 ## This is the public fixture
 
-Safe to fork. Every name is fictional (Northstar the account, Lumenfield the employer, Avery Quinn and Jordan Hale the people). Point live agents at your own private tree — do not put its location in a public repo.
+Safe to fork. Every name is fictional (Northstar the account, Lumenfield the employer, Avery Quinn and Jordan Hale the people). Point live agents at your own private tree. Do not put its location in a public repo.
+
+Concurrent writers use isolation sessions (`brain_session.py open` in second-brain-core) so each project worktree writes a PR instead of racing on main.
+
+New Grok Bot agents should read [second-brain-core docs/ONBOARDING.md](https://github.com/SpillwaveSolutions/second-brain-core/blob/main/docs/ONBOARDING.md) first. That file is the history of the LLM-wiki effort, the destination state, and the canonical public repo list. Each job pack has the same file with its own identity filled in.
 
 
 ## Quick start
