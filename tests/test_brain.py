@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 import json
+import shutil
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -58,6 +60,68 @@ def test_whoami_articles():
     assert "Article" in result["writes"]
 
 
+def test_whoami_unclaimed_does_not_invent_a_name():
+    result = run(["whoami", "--bundle", str(BUNDLE)])
+    # Sample tree has no claimed identity unless a previous test wrote one.
+    # Clear first so this is deterministic.
+    run(["whoami", "--clear", "--bundle", str(BUNDLE)])
+    result = run(["whoami", "--bundle", str(BUNDLE)])
+    assert result["claimed"] is False
+    assert result["identity"] == ""
+    assert "Ask the user" in result["hint"]
+
+
+def test_whoami_claim_and_write_uses_it():
+    tmp = Path(tempfile.mkdtemp())
+    bundle = tmp / "knowledge"
+    bundle.mkdir()
+    try:
+        claim = run(["whoami", "--claim", "Maya", "--plugin", "content-media", "--bundle", str(bundle)])
+        assert claim["claimed"] is True
+        assert claim["identity"] == "Maya"
+        shown = run(["whoami", "--bundle", str(bundle)])
+        assert shown["identity"] == "Maya"
+        written = run(
+            [
+                "write",
+                "--bundle",
+                str(bundle),
+                "--type",
+                "Draft",
+                "--title",
+                "Claimed Author Draft",
+            ]
+        )
+        assert written.get("ok"), written
+        text = (bundle / "drafts" / "claimed-author-draft.md").read_text(encoding="utf-8")
+        assert "author: Maya" in text
+    finally:
+        shutil.rmtree(tmp)
+
+
+def test_write_requires_identity():
+    tmp = Path(tempfile.mkdtemp())
+    bundle = tmp / "knowledge"
+    bundle.mkdir()
+    try:
+        result = run(
+            [
+                "write",
+                "--bundle",
+                str(bundle),
+                "--type",
+                "Draft",
+                "--title",
+                "No Identity",
+            ]
+        )
+        assert "error" in result
+        assert "no identity" in result["error"]
+    finally:
+        shutil.rmtree(tmp)
+
+
+
 def test_write_rejects_cross_plugin_author():
     result = run(
         [
@@ -86,6 +150,9 @@ def main() -> int:
         test_validate,
         test_pack_article_crosses_domains,
         test_whoami_articles,
+        test_whoami_unclaimed_does_not_invent_a_name,
+        test_whoami_claim_and_write_uses_it,
+        test_write_requires_identity,
         test_write_rejects_cross_plugin_author,
         test_doctor,
     ]

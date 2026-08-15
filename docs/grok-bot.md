@@ -1,24 +1,30 @@
-# Wiring Grok Bots
+# Wiring hosted agents
 
-Each hosted agent gets three things:
+A hosted Grok Bot (or Claude / Codex job) is **your** named agent. The plugin
+does not name it.
 
-1. **Name** exactly matching the identity string (`Grok Bot: Articles`).
-2. **Instructions** that paste or `@`-include `agents/packing/<slug>.md`.
-3. **Repo access** to this knowledge tree (the private working copy, not only the public starter).
+Each hosted agent needs three things:
 
-Suggested Grok Bot roster:
+1. **A name you choose.** Claim it with `python3 scripts/brain.py whoami --claim "…"`.
+2. **Instructions** that include: do not assume an identity; ask if unknown;
+   then load the packing prompt for the *plugin* you are using
+   (`agents/packing/…`).
+3. **Repo access** to this knowledge tree (the private working copy, not only
+   the public starter).
 
-| Bot name in the UI | Packing prompt |
-|--------------------|----------------|
-| Grok Bot: Executive Assistant | `agents/packing/grok-bot-executive-assistant.md` |
-| Grok Bot: Sales | `agents/packing/grok-bot-sales.md` |
-| Grok Bot: Account Management | `agents/packing/grok-bot-account-management.md` |
-| Grok Bot: Executive Job Search | `agents/packing/grok-bot-executive-job-search.md` |
-| Grok Bot: Consulting Leads | `agents/packing/grok-bot-consulting-leads.md` |
-| Grok Bot: Articles | `agents/packing/grok-bot-articles.md` |
-| Grok Bot: AI News Digest | `agents/packing/grok-bot-news-digest.md` |
-| Grok Bot: GTM | `agents/packing/grok-bot-gtm.md` |
+Optional sample packing prompts (job functions, not required names):
 
-The laptop Articles job uses `agents/packing/laptop-articles.md` and the same `knowledge/` folder.
+| Job function | Packing prompt |
+|--------------|----------------|
+| Executive coordination | `agents/packing/grok-bot-executive-assistant.md` |
+| Sales | `agents/packing/grok-bot-sales.md` |
+| Account management | `agents/packing/grok-bot-account-management.md` |
+| Executive job search | `agents/packing/grok-bot-executive-job-search.md` |
+| Consulting leads | `agents/packing/grok-bot-consulting-leads.md` |
+| Articles / content | `agents/packing/grok-bot-articles.md` |
+| News digest | `agents/packing/grok-bot-news-digest.md` |
+| Go-to-market | `agents/packing/grok-bot-gtm.md` |
+| Local articles job | `agents/packing/laptop-articles.md` |
 
-After a bot drafts something, it must call `scripts/brain.py write`. A reply that only lives in the Grok thread is not captured.
+After a bot drafts something, it must call `scripts/brain.py write` with a
+claimed identity. A reply that only lives in the chat thread is not captured.

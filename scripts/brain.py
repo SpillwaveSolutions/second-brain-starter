@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
 from datetime import datetime, timezone
@@ -12,6 +13,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 REG_PATH = ROOT / "scripts" / "registry.json"
 AGENTS_PATH = ROOT / "agents" / "registry.json"
+IDENTITY_FILENAME = ".identity.json"
 
 try:
     import yaml
@@ -246,6 +248,41 @@ def cmd_pack(args) -> int:
     return 0
 
 
+def identity_path(bundle: Path) -> Path:
+    return Path(bundle) / IDENTITY_FILENAME
+
+
+def load_claimed(bundle: Path) -> dict:
+    path = identity_path(bundle)
+    if path.is_file():
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            return {}
+        if isinstance(data, dict):
+            return data
+    return {}
+
+
+def resolve_author(bundle: Path, explicit: str = "") -> str:
+    """Author is never inferred from a plugin. Claim, env, or --author."""
+    if explicit and explicit.strip():
+        return explicit.strip()
+    env = (os.environ.get("SECOND_BRAIN_IDENTITY") or os.environ.get("OKF_AUTHOR") or "").strip()
+    if env:
+        return env
+    return str(load_claimed(bundle).get("identity") or "").strip()
+
+
+def lookup_role_template(query: str) -> dict | None:
+    agents = load_json(AGENTS_PATH)["agents"]
+    q = query.strip()
+    for a in agents:
+        if q in {a.get("identity"), a.get("alias"), a.get("slug"), a.get("plugin"), a.get("role")}:
+            return a
+    return None
+
+
 def cmd_doctor(args) -> int:
     bundle = Path(args.bundle)
     registry = load_json(REG_PATH)
@@ -290,6 +327,18 @@ def cmd_write(args) -> int:
             print(json.dumps({"error": f"{args.author} may not write {args.type} (owned by {spec['plugin']})"}))
             return 1
     bundle = Path(args.bundle)
+    author = resolve_author(bundle, args.author)
+    if not author:
+        print(
+            json.dumps(
+                {
+                    "error": "no identity claimed",
+                    "hint": "Ask the user what to sign as, then: python3 scripts/brain.py whoami --claim \"Your Name\" --bundle "
+                    + str(bundle),
+                }
+            )
+        )
+        return 1
     folder = args.folder or spec["folder"]
     slug = args.slug or slugify(args.title)
     path = bundle / folder / f"{slug}.md"
@@ -299,7 +348,7 @@ def cmd_write(args) -> int:
         "title": args.title,
         "status": args.status,
         "timestamp": now_iso(),
-        "author": args.author or f"Grok Bot: {spec['plugin']}",
+        "author": author,
         "tags": [t for t in args.tags.split(",") if t] if args.tags else [],
         "links": [],
     }
@@ -310,15 +359,74 @@ def cmd_write(args) -> int:
 
 
 def cmd_whoami(args) -> int:
-    agents = load_json(AGENTS_PATH)["agents"]
-    if args.identity:
-        hits = [a for a in agents if a["identity"] == args.identity or a.get("alias") == args.identity or a["slug"] == args.identity]
-        if not hits:
-            print(json.dumps({"error": f"unknown identity {args.identity}"}))
-            return 1
-        print(json.dumps(hits[0], indent=2))
+    bundle = Path(args.bundle)
+    if args.clear:
+        path = identity_path(bundle)
+        if path.is_file():
+            path.unlink()
+        print(json.dumps({"ok": True, "claimed": False, "cleared": True}))
         return 0
-    print(json.dumps(agents, indent=2))
+    if args.claim:
+        name = args.claim.strip()
+        if not name:
+            print(json.dumps({"error": "empty identity"}))
+            return 1
+        doc = {
+            "identity": name,
+            "plugin": args.plugin or "",
+            "claimed_at": now_iso(),
+            "claimed_how": "agent",
+        }
+        path = identity_path(bundle)
+        path.write_text(json.dumps(doc, indent=2) + "\n", encoding="utf-8")
+        if args.print:
+            print(name)
+            return 0
+        print(json.dumps({"ok": True, "claimed": True, **doc}, indent=2))
+        return 0
+    if args.identity:
+        hit = lookup_role_template(args.identity)
+        if not hit:
+            print(json.dumps({"error": f"unknown role template {args.identity}"}))
+            return 1
+        print(json.dumps(hit, indent=2))
+        return 0
+    claimed = resolve_author(bundle)
+    stored = load_claimed(bundle)
+    if args.print:
+        if not claimed:
+            return 1
+        print(claimed)
+        return 0
+    if claimed:
+        print(
+            json.dumps(
+                {
+                    "claimed": True,
+                    "identity": claimed,
+                    "plugin": stored.get("plugin") or "",
+                    "source": "env"
+                    if (os.environ.get("SECOND_BRAIN_IDENTITY") or os.environ.get("OKF_AUTHOR"))
+                    else "file",
+                },
+                indent=2,
+            )
+        )
+        return 0
+    print(
+        json.dumps(
+            {
+                "claimed": False,
+                "identity": "",
+                "hint": "Identity is not hardcoded. Ask the user what to sign as, then: python3 scripts/brain.py whoami --claim \"Name\"",
+                "role_templates": [
+                    {"plugin": a.get("plugin"), "example": a.get("identity"), "job": a.get("job")}
+                    for a in load_json(AGENTS_PATH)["agents"]
+                ],
+            },
+            indent=2,
+        )
+    )
     return 0
 
 
@@ -388,7 +496,12 @@ def main() -> int:
     wri.add_argument("--body", default="")
 
     who = sub.add_parser("whoami")
-    who.add_argument("--identity", default="")
+    who.add_argument("--bundle", default=str(ROOT / "knowledge"))
+    who.add_argument("--identity", default="", help="Look up a role template (optional, not a required name)")
+    who.add_argument("--claim", default="", help="Claim this session identity (ask the user if unknown)")
+    who.add_argument("--plugin", default="", help="Optional plugin this claim is using")
+    who.add_argument("--print", action="store_true", dest="print", help="Print only the claimed identity string")
+    who.add_argument("--clear", action="store_true", help="Forget the claimed identity")
 
     args = p.parse_args()
     return {
