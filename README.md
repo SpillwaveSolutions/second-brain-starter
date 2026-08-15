@@ -80,6 +80,23 @@ Job search (Lumenfield) is a separate track on purpose. Do not fold it into a cl
 
 Point every plugin at this repo's `knowledge/` folder.
 
+
+## Concurrent writers
+
+Agents on different machines or project worktrees share one private second brain. They do not write `main` directly.
+
+1. Read shared truth from `main`.
+2. Open a session with second-brain-core `scripts/brain_session.py open`.
+3. Write owned types only via the pack scripts, with `--author` or `SECOND_BRAIN_IDENTITY`.
+4. Close the session to commit and open a PR against the checkout's existing remote. Never force-push. Never invent a remote.
+
+See [second-brain-core docs/ISOLATION.md](https://github.com/SpillwaveSolutions/second-brain-core/blob/main/docs/ISOLATION.md).
+
+Hosts use the same skills:
+
+- Grok Bot binds via [docs/GROK_BOT.md](https://github.com/SpillwaveSolutions/second-brain-core/blob/main/docs/GROK_BOT.md) (no `/plugin install`).
+- LangChain Deep Agents binds via [docs/LANG_CHAIN_DEEP_AGENTS.md](https://github.com/SpillwaveSolutions/second-brain-core/blob/main/docs/LANG_CHAIN_DEEP_AGENTS.md) (`skills=` or SkillsMiddleware).
+
 ## License
 
 MIT. Copyright 2026 Rick Hightower / contributors.
