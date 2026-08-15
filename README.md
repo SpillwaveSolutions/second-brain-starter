@@ -2,8 +2,10 @@
 
 PUBLIC starter. Fictional sample graph only.
 
-Shared OKF `knowledge/` tree for the eight Grok Bot job functions plus local laptop jobs.
+Shared OKF `knowledge/` tree for the job-function plugins plus local laptop jobs.
 Plugins from [second-brain-marketplace](https://github.com/SpillwaveSolutions/second-brain-marketplace) write here.
+**Identity is claimed by the agent (or asked of the human), never shipped in the plugin.**
+
 
 ## Clone
 
@@ -25,35 +27,38 @@ The private working copy lives at `SpillwaveSolutions/rick-grok-bot-knowledge`.
 ## Quick start
 
 ```bash
-# Who is this agent?
-python3 scripts/brain.py whoami --identity "Grok Bot: Articles"
+# Identity is not hardcoded. Ask, then claim.
+python3 scripts/brain.py whoami
+python3 scripts/brain.py whoami --claim "Your Name" --plugin content-media
 
 # Bounded pack (2 hops, ~20 nodes)
 python3 scripts/brain.py pack --root "The work is happening you just cannot see it"
 
-# Deterministic write
+# Deterministic write (uses the claimed identity if --author is omitted)
 python3 scripts/brain.py write \
   --type Draft \
-  --title "When the decision already happened" \
-  --author "Grok Bot: Articles"
+  --title "When the decision already happened"
 
 # Validate links and owned rels
 python3 scripts/brain.py validate
 ```
 
-## Agent roster
+## Job functions
 
-| Identity | Plugin | Pack from |
-|----------|--------|-----------|
-| `Grok Bot: Executive Assistant` | `executive-coordination` | `/priorities/ship-second-brain-plugins.md` |
-| `Grok Bot: Sales` | `sales-pipeline` | `/opportunities/northstar-harness-sprint.md` |
-| `Grok Bot: Account Management` | `account-management` | `/clients/northstar.md` |
-| `Grok Bot: Executive Job Search` | `executive-job-search` | `/job-leads/lumenfield-head-of-ai-platform.md` |
-| `Grok Bot: Consulting Leads` | `consulting-leads` | `/consulting-leads/northstar-platform-team.md` |
-| `Grok Bot: Articles` | `content-media` | `/articles/the-work-is-happening.md` |
-| `Grok Bot: News Digest` | `news-digest` | `/digests/morning-2026-08-14.md` |
-| `Grok Bot: GTM` | `gtm-positioning` | `/positioning/disclosure-not-more-context.md` |
-| `Laptop: Articles` | `content-media` | `/drafts/the-work-is-happening.md` |
+Plugins own catalogs. Agents claim a signature. The table below is the sample
+Northstar fixture, not a required roster.
+
+| Plugin | Sample signature in the fixture | Pack from |
+|--------|--------------------------------|-----------|
+| `executive-coordination` | `Grok Bot: Executive Assistant` | `/priorities/ship-second-brain-plugins.md` |
+| `sales-pipeline` | `Grok Bot: Sales` | `/opportunities/northstar-harness-sprint.md` |
+| `account-management` | `Grok Bot: Account Management` | `/clients/northstar.md` |
+| `executive-job-search` | `Grok Bot: Executive Job Search` | `/job-leads/lumenfield-head-of-ai-platform.md` |
+| `consulting-leads` | `Grok Bot: Consulting Leads` | `/consulting-leads/northstar-platform-team.md` |
+| `content-media` | `Grok Bot: Articles` / `Laptop: Articles` | `/articles/the-work-is-happening.md` |
+| `news-digest` | `Grok Bot: News Digest` | `/digests/morning-2026-08-14.md` |
+| `gtm-positioning` | `Grok Bot: GTM` | `/positioning/disclosure-not-more-context.md` |
+
 
 ## Sample graph (Northstar)
 

@@ -10,3 +10,5 @@ knowledge/packs/*-pack.md
 .pytest_cache/
 .env
 secrets/
+knowledge/.identity.json
+

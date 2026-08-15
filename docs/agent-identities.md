@@ -1,21 +1,30 @@
 # Agent identities
 
-Format: `Grok Bot: <Role>` for hosted agents, `Laptop: <Role>` for local jobs.
+Identity is **not** a property of a plugin. The agent using the plugin decides
+who it is, or asks the human, then claims that string.
 
-The role is a job function. It owns a ContentPack plugin. It does not own the tree.
+```bash
+python3 scripts/brain.py whoami
+python3 scripts/brain.py whoami --claim "Maya" --plugin content-media
+# or export SECOND_BRAIN_IDENTITY="Maya"
+```
 
-| Identity | Plugin | Default pack root |
-|----------|--------|-------------------|
-| `Grok Bot: Executive Assistant` | `executive-coordination` | `/priorities/ship-second-brain-plugins.md` |
-| `Grok Bot: Sales` | `sales-pipeline` | `/opportunities/northstar-harness-sprint.md` |
-| `Grok Bot: Account Management` | `account-management` | `/clients/northstar.md` |
-| `Grok Bot: Executive Job Search` | `executive-job-search` | `/job-leads/lumenfield-head-of-ai-platform.md` |
-| `Grok Bot: Consulting Leads` | `consulting-leads` | `/consulting-leads/northstar-platform-team.md` |
-| `Grok Bot: Articles` | `content-media` | `/articles/the-work-is-happening.md` |
-| `Grok Bot: News Digest` | `news-digest` | `/digests/morning-2026-08-14.md` |
-| `Grok Bot: GTM` | `gtm-positioning` | `/positioning/disclosure-not-more-context.md` |
-| `Laptop: Articles` | `content-media` | `/drafts/the-work-is-happening.md` |
+`brain.py write` refuses to commit until an identity is claimed (`--author`,
+env, or `knowledge/.identity.json`). There is no default `Grok Bot: …` author.
 
-`Grok Bot: AI News Digest` is an alias of `Grok Bot: News Digest`.
+A plugin is a **job function**. Optional role templates live in
+`agents/registry.json` as examples (how the sample Northstar graph was signed).
+They are not assignments. You may sign as anything.
 
-See `agents/registry.json` and `agents/identities/`.
+| Job function (plugin) | Sample signature in the fixture | Default pack root |
+|-----------------------|---------------------------------|-------------------|
+| `executive-coordination` | `Grok Bot: Executive Assistant` | `/priorities/ship-second-brain-plugins.md` |
+| `sales-pipeline` | `Grok Bot: Sales` | `/opportunities/northstar-harness-sprint.md` |
+| `account-management` | `Grok Bot: Account Management` | `/clients/northstar.md` |
+| `executive-job-search` | `Grok Bot: Executive Job Search` | `/job-leads/lumenfield-head-of-ai-platform.md` |
+| `consulting-leads` | `Grok Bot: Consulting Leads` | `/consulting-leads/northstar-platform-team.md` |
+| `content-media` | `Grok Bot: Articles` / `Laptop: Articles` | `/articles/the-work-is-happening.md` |
+| `news-digest` | `Grok Bot: News Digest` | `/digests/morning-2026-08-14.md` |
+| `gtm-positioning` | `Grok Bot: GTM` | `/positioning/disclosure-not-more-context.md` |
+
+See `agents/registry.json` and `agents/identities/` for those sample templates.

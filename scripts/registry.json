@@ -464,47 +464,47 @@
   "plugins": [
     {
       "name": "second-brain-core",
-      "identity": "Grok Bot: Second Brain Core",
+      "role": "shared substrate",
       "repo": "https://github.com/SpillwaveSolutions/second-brain-core"
     },
     {
       "name": "executive-coordination",
-      "identity": "Grok Bot: Executive Assistant",
+      "role": "chief of staff",
       "repo": "https://github.com/SpillwaveSolutions/executive-coordination"
     },
     {
       "name": "account-management",
-      "identity": "Grok Bot: Account Management",
+      "role": "account management",
       "repo": "https://github.com/SpillwaveSolutions/account-management"
     },
     {
       "name": "sales-pipeline",
-      "identity": "Grok Bot: Sales",
+      "role": "sales",
       "repo": "https://github.com/SpillwaveSolutions/sales-pipeline"
     },
     {
       "name": "executive-job-search",
-      "identity": "Grok Bot: Executive Job Search",
+      "role": "executive job search",
       "repo": "https://github.com/SpillwaveSolutions/executive-job-search"
     },
     {
       "name": "consulting-leads",
-      "identity": "Grok Bot: Consulting Leads",
+      "role": "consulting leads",
       "repo": "https://github.com/SpillwaveSolutions/consulting-leads"
     },
     {
       "name": "content-media",
-      "identity": "Grok Bot: Articles",
+      "role": "articles / content",
       "repo": "https://github.com/SpillwaveSolutions/content-media"
     },
     {
       "name": "news-digest",
-      "identity": "Grok Bot: News Digest",
+      "role": "news digest",
       "repo": "https://github.com/SpillwaveSolutions/news-digest"
     },
     {
       "name": "gtm-positioning",
-      "identity": "Grok Bot: GTM",
+      "role": "go-to-market",
       "repo": "https://github.com/SpillwaveSolutions/gtm-positioning"
     }
   ]
