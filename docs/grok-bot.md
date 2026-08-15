@@ -9,8 +9,7 @@ Each hosted agent needs three things:
 2. **Instructions** that include: do not assume an identity; ask if unknown;
    then load the packing prompt for the *plugin* you are using
    (`agents/packing/…`).
-3. **Repo access** to this knowledge tree (the private working copy, not only
-   the public starter).
+3. **Repo access** to the knowledge tree the operator pointed you at. Never write the location of a private tree into a public file.
 
 Optional sample packing prompts (job functions, not required names):
 

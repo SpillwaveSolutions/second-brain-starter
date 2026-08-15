@@ -19,9 +19,7 @@ python3 tests/test_brain.py
 
 ## This is the public fixture
 
-Safe to fork. Every name is fictional (Northstar the account, Lumenfield the employer, Avery Quinn and Jordan Hale the people).
-
-The private working copy lives at `SpillwaveSolutions/rick-grok-bot-knowledge`.
+Safe to fork. Every name is fictional (Northstar the account, Lumenfield the employer, Avery Quinn and Jordan Hale the people). Point live agents at your own private tree — do not put its location in a public repo.
 
 
 ## Quick start
