@@ -61,6 +61,21 @@ Northstar fixture, not a required roster.
 | `gtm-positioning` | `Grok Bot: GTM` | `/positioning/disclosure-not-more-context.md` |
 
 
+## Foundation layer
+
+The job packs write a shared OKF tree. The engineering substrate is separate
+and now installable from [second-brain-marketplace](https://github.com/SpillwaveSolutions/second-brain-marketplace):
+
+- [okf-plugin](https://github.com/SpillwaveSolutions/okf-plugin) (`okf-graph-eng`)
+- [project-knowledge-capture](https://github.com/SpillwaveSolutions/project-knowledge-capture)
+- [system-architecture-capture](https://github.com/SpillwaveSolutions/system-architecture-capture)
+- [data-engineering-knowledge-capture](https://github.com/SpillwaveSolutions/data-engineering-knowledge-capture)
+- [okf-agent-graph](https://github.com/SpillwaveSolutions/okf-agent-graph)
+- [wiki_ticket_sdd](https://github.com/SpillwaveSolutions/wiki_ticket_sdd) (`worklog`)
+
+History and host contract: [second-brain-core docs/ONBOARDING.md](https://github.com/SpillwaveSolutions/second-brain-core/blob/main/docs/ONBOARDING.md).
+Public samples stay **Northstar / Lumenfield** fiction. Never name a private remote.
+
 ## Sample graph (Northstar)
 
 A single fictional story so packs cross plugins:
