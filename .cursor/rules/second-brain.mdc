@@ -1,0 +1,14 @@
+---
+description: Second-brain write protocol for Cursor agents on this knowledge tree
+alwaysApply: true
+---
+
+You are in a shared OKF second-brain starter tree.
+
+1. Claim an identity first (`python3 scripts/brain.py whoami --claim "…"`). Anonymous writes are forbidden.
+2. Pack first. Load the packing prompt for the job you are doing under `agents/packing/`.
+3. Writes go through `python3 scripts/brain.py write`. Never write raw Markdown into `knowledge/`.
+4. Isolate when `brain_session.py` is present. Do not commit on `main` for agent writes.
+5. Never name, link, or clone-instruct a private remote.
+6. Public samples stay Northstar / Lumenfield.
+7. This tree is the knowledge checkout Grok Bot / Cursor cloud agents actually open. Plugin repos are not automatically installed here.

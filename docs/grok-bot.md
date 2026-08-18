@@ -27,3 +27,10 @@ Optional sample packing prompts (job functions, not required names):
 
 After a bot drafts something, it must call `scripts/brain.py write` with a
 claimed identity. A reply that only lives in the chat thread is not captured.
+
+## Cursor
+
+Grok Bot coding sessions open **this tree in Cursor**. Follow
+[CURSOR.md](CURSOR.md). The `.cursor/rules/second-brain.mdc` rule is always
+on. Plugin install is optional. Scripted writes are not.
+

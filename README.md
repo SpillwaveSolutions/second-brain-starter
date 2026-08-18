@@ -113,6 +113,8 @@ See [second-brain-core docs/ISOLATION.md](https://github.com/SpillwaveSolutions/
 Hosts use the same skills:
 
 - Grok Bot binds via [docs/GROK_BOT.md](https://github.com/SpillwaveSolutions/second-brain-core/blob/main/docs/GROK_BOT.md) (no `/plugin install`).
+- Cursor (including Grok Bot cloud agents that open this tree): [docs/CURSOR.md](docs/CURSOR.md).
+
 - LangChain Deep Agents binds via [docs/LANG_CHAIN_DEEP_AGENTS.md](https://github.com/SpillwaveSolutions/second-brain-core/blob/main/docs/LANG_CHAIN_DEEP_AGENTS.md) (`skills=` or SkillsMiddleware).
 
 ## License
