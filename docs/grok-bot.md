@@ -8,7 +8,8 @@ Each hosted agent needs three things:
 1. **A name you choose.** Claim it with `python3 scripts/brain.py whoami --claim "…"`.
 2. **Instructions** that include: do not assume an identity; ask if unknown;
    then load the packing prompt for the *plugin* you are using
-   (`agents/packing/…`).
+   (`agents/packing/…`). For Q&A, load `agents/packing/retrieval.md` and
+   spawn a retriever (card only).
 3. **Repo access** to the knowledge tree the operator pointed you at. Never write the location of a private tree into a public file.
 
 Optional sample packing prompts (job functions, not required names):
@@ -24,6 +25,7 @@ Optional sample packing prompts (job functions, not required names):
 | News digest | `agents/packing/grok-bot-news-digest.md` |
 | Go-to-market | `agents/packing/grok-bot-gtm.md` |
 | Local articles job | `agents/packing/laptop-articles.md` |
+| Query-time retrieval | `agents/packing/retrieval.md` |
 
 After a bot drafts something, it must call `scripts/brain.py write` with a
 claimed identity. A reply that only lives in the chat thread is not captured.

@@ -16,7 +16,7 @@ installed. Do not wait for `/plugin install`. Follow the write protocol.
 ## Protocol
 
 1. Claim identity with `python3 scripts/brain.py whoami --claim "…"`.
-2. Load the packing prompt for the job (`agents/packing/…`).
+2. Load the packing prompt for the job (`agents/packing/…`). For Q&A, load `agents/packing/retrieval.md`, spawn the owning retriever (or a child Task), and keep a Retrieval card only.
 3. Write only via `python3 scripts/brain.py write`.
 4. Never dump the tree. Never invent a private remote.
 

@@ -10,6 +10,8 @@ scripts/brain.py        deterministic write / pack / validate
 
 Session chat is working memory. It dies with the tab.
 Packs are how working memory borrows institutional memory without eating the tree.
+Query-time Q&A isolates that walk in a retriever (or child Task); the parent
+keeps a Retrieval card only. See `docs/RETRIEVAL.md`.
 
 ## Write boundary
 

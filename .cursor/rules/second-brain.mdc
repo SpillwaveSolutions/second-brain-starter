@@ -6,7 +6,7 @@ alwaysApply: true
 You are in a shared OKF second-brain starter tree.
 
 1. Claim an identity first (`python3 scripts/brain.py whoami --claim "…"`). Anonymous writes are forbidden.
-2. Pack first. Load the packing prompt for the job you are doing under `agents/packing/`.
+2. Retrieve, then write. For Q&A, spawn the owning pack’s retriever (or a short-lived child Task) and consume only a Retrieval card. Do not run full search/pack inline in the parent. `scripts/brain.py pack` is for tiny checks inside that child, or when no retriever exists yet. Load `agents/packing/retrieval.md` for fan-out.
 3. Writes go through `python3 scripts/brain.py write`. Never write raw Markdown into `knowledge/`.
 4. Isolate when `brain_session.py` is present. Do not commit on `main` for agent writes.
 5. Never name, link, or clone-instruct a private remote.
