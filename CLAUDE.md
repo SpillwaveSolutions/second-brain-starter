@@ -4,9 +4,9 @@ Shared OKF second brain. Dual-host with Grok Build and Codex.
 
 - Knowledge root: `knowledge/`
 - Write helper: `python3 scripts/brain.py write`
-- Pack helper: `python3 scripts/brain.py pack --root <title-or-path>`
+- Pack helper: `python3 scripts/brain.py pack --root <title-or-path>` (child / no-retriever fallback; see `docs/RETRIEVAL.md`)
 - Identities: claimed at runtime (`brain.py whoami --claim`). Sample templates in `agents/identities/`
-- Packing prompts: `agents/packing/` (job function, not a bot name)
+- Packing prompts: `agents/packing/` (job function, not a bot name). Q&A fan-out: `agents/packing/retrieval.md`
 
 - Articles workflow: `agents/articles-workflow.md`
 

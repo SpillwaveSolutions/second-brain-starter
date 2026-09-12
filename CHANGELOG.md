@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.3 — 2026-09-12
+
+- Query-time retrieval: parent spawns a pack retriever (or child Task) and
+  keeps a Retrieval card only. `scripts/brain.py pack` stays a child / no-retriever
+  fallback. See `docs/RETRIEVAL.md` and `agents/packing/retrieval.md`.
+
 ## 0.1.2 — 2026-08-17
 
 - Cursor host: `docs/CURSOR.md` and `.cursor/rules/second-brain.mdc`.

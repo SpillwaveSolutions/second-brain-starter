@@ -32,7 +32,9 @@ New Grok Bot agents should read [second-brain-core docs/ONBOARDING.md](https://g
 python3 scripts/brain.py whoami
 python3 scripts/brain.py whoami --claim "Your Name" --plugin content-media
 
-# Bounded pack (2 hops, ~20 nodes)
+# Bounded pack (2 hops, ~20 nodes) — child / no-retriever fallback.
+# For Q&A, spawn a retriever (or child Task) and keep a Retrieval card only.
+# See docs/RETRIEVAL.md
 python3 scripts/brain.py pack --root "The work is happening you just cannot see it"
 
 # Deterministic write (uses the claimed identity if --author is omitted)
@@ -70,6 +72,7 @@ and now installable from [second-brain-marketplace](https://github.com/Spillwave
 - [project-knowledge-capture](https://github.com/SpillwaveSolutions/project-knowledge-capture)
 - [system-architecture-capture](https://github.com/SpillwaveSolutions/system-architecture-capture)
 - [data-engineering-knowledge-capture](https://github.com/SpillwaveSolutions/data-engineering-knowledge-capture)
+- [research-knowledge-capture](https://github.com/SpillwaveSolutions/research-knowledge-capture)
 - [okf-agent-graph](https://github.com/SpillwaveSolutions/okf-agent-graph)
 - [wiki_ticket_sdd](https://github.com/SpillwaveSolutions/wiki_ticket_sdd) (`worklog`)
 
